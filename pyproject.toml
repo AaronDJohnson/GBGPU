@@ -15,6 +15,12 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "*"
+numpy = "^2.0.0"
+lisaanalysistools = "^0.5.1"
+h5py = "^3.13.0"
+scipy = "^1.15.2"
+fastlisaresponse = "1.0.11"
+
 # astropy = "==5.2.1"
 # corner = "==2.2.1"
 # healpy = "==1.16.2"
