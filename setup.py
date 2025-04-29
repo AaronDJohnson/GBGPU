@@ -6,7 +6,10 @@ from setuptools import setup
 from distutils.extension import Extension
 from Cython.Distutils import build_ext
 import numpy
+import subprocess
 
+# run pre‐build step
+subprocess.check_call(["python", "scripts/prebuild.py"])
 
 def find_in_path(name, path):
     """Find a file in a search path"""
@@ -121,8 +124,13 @@ except AttributeError:
     numpy_include = numpy.get_numpy_include()
 
 
-lib_gsl_dir = "/opt/local/lib"
-include_gsl_dir = "/opt/local/include"
+conda_prefix = os.environ.get("CONDA_PREFIX")
+if conda_prefix:
+    lib_gsl_dir = os.path.join(conda_prefix, "lib")
+    include_gsl_dir = os.path.join(conda_prefix, "include")
+else:
+    lib_gsl_dir = "/opt/local/lib"
+    include_gsl_dir = "/opt/local/include"
 
 if run_cuda_install:
     ext_gpu_dict = dict(
